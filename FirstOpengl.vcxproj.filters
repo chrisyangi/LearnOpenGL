@@ -37,7 +37,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="vertexShader.txt" />
-    <Text Include="fragmentShader.txt" />
+    <Text Include="color.vs" />
+    <Text Include="color.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="light_cube.vs" />
+    <None Include="light_cube.fs" />
   </ItemGroup>
 </Project>
