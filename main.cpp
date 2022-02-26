@@ -152,8 +152,8 @@ int main()
         lightPos.y = sin(glfwGetTime() / 2.0f) * 1.0f;
         // activate shader
         lightingShader.use();
-        lightingShader.setVec3("objectColor" , 1.0f, 0.5f, 0.31f);
-        lightingShader.setVec3("lightColor", 1.0f, 1.0f , 1.0f);
+        //lightingShader.setVec3("objectColor" , 1.0f, 0.5f, 0.31f);
+        //lightingShader.setVec3("lightColor", 1.0f, 1.0f , 1.0f);
 
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
         glm::mat4 view = camera.GetViewMatrix();
@@ -163,6 +163,20 @@ int main()
         lightingShader.setMat4("projection", projection);
         lightingShader.setVec3("lightPos", lightPos.x , lightPos.y , lightPos.z);
         lightingShader.setVec3("viewPos", camera.Position.x , camera.Position.y , camera.Position.z);
+        lightingShader.setVec3("material.ambient", 1.0f, 0.5f, 0.31f);
+        lightingShader.setVec3("material.diffuse", 1.0f, 0.5f, 0.31f);
+        lightingShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
+        lightingShader.setFloat("material.shininess", 32.0f);
+
+        glm::vec3 lightColor = glm::vec3(1.0f);
+        lightColor.x = sin(glfwGetTime() * 1.0f);
+        lightColor.y = sin(glfwGetTime() * 0.7f);
+        lightColor.z = sin(glfwGetTime() * 1.3f);
+        glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f);
+        glm::vec3 ambientColor = lightColor * glm::vec3(0.2f);
+        lightingShader.setVec3("light.ambient", ambientColor.x , ambientColor.y , ambientColor.z);
+        lightingShader.setVec3("light.diffuse", diffuseColor.x, diffuseColor.y , diffuseColor.z); // 将光照调暗了一些以搭配场景
+        lightingShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
         glBindVertexArray(cubeVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
