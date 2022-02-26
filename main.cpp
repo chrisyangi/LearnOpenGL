@@ -189,14 +189,14 @@ int main()
         lightingShader.setMat4("model", model);
         lightingShader.setMat4("view", view);
         lightingShader.setMat4("projection", projection);
-        lightingShader.setVec3("light.position" ,lightPos.x , lightPos.y , lightPos.z);
+        lightingShader.setVec3("light.position" ,camera.Position.x , camera.Position.y , camera.Position.z);
         lightingShader.setVec3("light.direction", camera.Front.x, camera.Front.y, camera.Front.z);
         lightingShader.setFloat("light.cutOff", glm::cos(glm::radians(12.5f)));
         lightingShader.setFloat("light.outerCutOff", glm::cos(glm::radians(17.5f)));
         lightingShader.setFloat("material.shininess", 32.0f);
 
-        lightingShader.setVec3("light.ambient", 0.2f, 0.2f, 0.2f);
-        lightingShader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
+        lightingShader.setVec3("light.ambient", 0.7f, 0.5f, 0.7f);
+        lightingShader.setVec3("light.diffuse", 0.8f, 0.8f, 0.8f);
         lightingShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
         lightingShader.setFloat("light.constant", 1.0f);
         lightingShader.setFloat("light.linear", 0.09f);
@@ -212,7 +212,7 @@ int main()
             lightingShader.setMat4("model", model);
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
-        
+        /*
         lightCubeShader.use();
         lightCubeShader.setMat4("projection", projection);
         lightCubeShader.setMat4("view", view);
@@ -222,7 +222,7 @@ int main()
         lightCubeShader.setMat4("model", model);
         glBindVertexArray(lightcubeVAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
-        
+        */
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
         glfwSwapBuffers(window);
